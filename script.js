@@ -18,7 +18,7 @@ localStorage.getItem("city", cityEntry);
 
 const apiKey = "6b0d57e0839124a28215d650b3438d88";
 const apiUrl =  "https://api.openweathermap.org/data/2.5/weather?q=" + cityEntry + "&appid=" + apiKey;
-
+const forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityEntry + "&appid=" + apiKey;
 
 
 
