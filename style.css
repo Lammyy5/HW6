@@ -18,3 +18,67 @@ h1 {
     gap: 35px;
     padding: 30px;
 }
+.weather-input input {
+    width: 100%;
+    padding: 8px 15px;
+    margin: 10px 0 20px 0;
+}
+
+.weather-input button {
+    width: 100%;
+    padding: 8px 0;
+    outline: none;
+    border: none;
+    background-color: rgb(91, 91, 237);
+    color: white;
+    border-radius: 5px;
+
+}
+.weather-input .search-history{
+    background-color: grey;
+}
+
+
+.weather-input .divider {
+    height: 1px;
+    width: 100%;
+    margin: 25px 0;
+    background: #bbb;
+} 
+
+.current-weather {
+    background-color: grey;
+    border-radius: 5px;
+    padding: 20px 70px 20px 20px;
+    justify-content: space-between;
+}
+
+.current-weather h2 {
+    font-size: 1.7rem;
+}
+.week-forecast{
+    position: relative;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+.week-forecast h2{
+    width: 100%;
+    padding: 8px 15px;
+    margin: 10px 0 20px 0;
+}
+.weather-data h4 {
+    margin-top: 12px;
+    font-size: 1rem;
+    font-weight: 500;
+}
+.forecast{
+    display: flex;
+    gap: 20px;
+}
+.forecast .card{
+list-style: none;
+background-color: grey;
+
+
+}
