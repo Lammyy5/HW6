@@ -13,12 +13,11 @@
     <div class="container">
         <div class="weather-input">
             <h3>Search for a City or Zip Code:</h3>
-            <form id="get-city"></form>
-            <input id="search-text" name="search-text" type="text" placeholder="Atlanta">
-            <button type="button" class="search-btn" onclick="">Search</button>
-            </input>
-            <div class="divider"></div>
-            <button class="search-history"></button>
+            <form id="get-city">
+                <input id="search-text" name="search-text" autofocus="true" type="text" placeholder="Atlanta" />
+                <button type="submit" class="search-btn" onclick="getCity()">Search</button>
+                <div class="divider"></div>
+                <button class="search-history"></button>
             </form>
 
 
