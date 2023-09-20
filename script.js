@@ -42,24 +42,36 @@ fetch(url)
   return response.json();
 })
 .then(function (data){
+    let temp = data.main.temp;
+    let humidity = data.main.humidity;
+    let wind = data.wind.speed;
+    let name = data.name;
+
+    let weather = [name,temp,humidity,wind];
+
+    console.log(temp)
     // showWeather(data.results)
     console.log(data)
-    showWeather(data);
+    showWeather(weather);
     // showWeather();
 }) 
     // todo: get weather from city searched
     
 }
-function showWeather (data) {
-    // const {name, }
+function showWeather (weather) {
+    let name = weather[0];
+    let temp = weather[1];
+    let wind = weather[2];
+    let humidity = weather[3];
+
 weatherDataEl.innerHtml = ""
 
 
 currentWeatherEl.innerHTML = `
-<h2>${data}</h2>
-<h4>Temperature: 19c</h4>
-<h4>Wind: 4.31 M/S</h4>
-<h4>Humidity: 79%</h4>
+<h2>${name}</h2>
+<h4>Temperature:${temp}</h4>
+<h4>Wind:${wind} M/S</h4>
+<h4>Humidity:${humidity}%</h4>
 `
 }
 function searchHistory() {
