@@ -7,8 +7,6 @@ let cardEl = document.querySelector(".card");
 let searchBtnEl = document.querySelector(".search-btn");
 let weatherDataEl = document.querySelector(".weather-data");
 let currentWeatherEl = document.querySelector(".current-weather")
-const cityText = searchTextEl.value.trim();
-const cityEntry = cityText;
 
 // const cityEntry = searchTextEl.value;
 localStorage.getItem("city", searchTextEl);
@@ -22,10 +20,8 @@ localStorage.getItem("city", searchTextEl);
 // })
 
 
-
-const apiKey = "6b0d57e0839124a28215d650b3438d88" + cityEntry;
-const apiUrl =  "https://api.openweathermap.org/data/2.5/weather?&appid=6b0d57e0839124a28215d650b3438d88&q=";
-const forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?&appid=6b0d57e0839124a28215d650b3438d88q=" + cityEntry + "&appid=" + apiKey;
+const apiUrl =  "https://api.openweathermap.org/data/2.5/weather?&appid=6b0d57e0839124a28215d650b3438d88&units=imperial&q=";
+const forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?&appid=6b0d57e0839124a28215d650b3438d88&units=imperial&q=";
 
 
 
@@ -47,19 +43,20 @@ fetch(url)
 })
 .then(function (data){
     // showWeather(data.results)
-    console.log(city)
-    
+    console.log(data)
+    showWeather(data);
     // showWeather();
 }) 
     // todo: get weather from city searched
     
 }
 function showWeather (data) {
+    // const {name, }
 weatherDataEl.innerHtml = ""
 
 
 currentWeatherEl.innerHTML = `
-<h2>${city}</h2>
+<h2>${data}</h2>
 <h4>Temperature: 19c</h4>
 <h4>Wind: 4.31 M/S</h4>
 <h4>Humidity: 79%</h4>
