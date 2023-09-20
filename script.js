@@ -1,31 +1,36 @@
 
 
 // variables
-const searchTextEl = document.querySelector('#search-text');
+const searchTextEl = document.querySelector("#search-text");
 let cardEl = document.querySelector(".card");
 let searchBtnEl = document.querySelector(".search-btn");
 let weatherDataEl = document.querySelector(".weather-data");
 let currentWeatherEl = document.querySelector(".current-weather")
 
-const cityEntry = searchTextEl.val();
-localStorage.getItem("city", cityEntry);
+const cityEntry = searchTextEl.value;
+localStorage.getItem("city", searchTextEl);
 
 
+// form.addEventListener("submit", (e) => {
+//     e.preventDefault();
 
+//     const searchTerm = search.value;
 
+// })
 
 
 
 const apiKey = "6b0d57e0839124a28215d650b3438d88";
-const apiUrl =  "https://api.openweathermap.org/data/2.5/weather?q=" + cityEntry + "&appid=" + apiKey;
-const forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityEntry + "&appid=" + apiKey;
+const apiUrl =  "https://api.openweathermap.org/data/2.5/weather?q=" + searchTextEl + "&appid=" + apiKey;
+const forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + searchTextEl + "&appid=" + apiKey;
 
 
 
 // functions
 
 
-let getWeather = function() {
+let getWeather = function(searchTextEl) {
+let Url = apiUrl
 fetch(apiUrl)
 .then(function (response){
   return response.json();
@@ -52,7 +57,7 @@ currentWeatherEl.innerHTML = `
 function searchHistory() {
     // make a button for all weather stored locally 
 }
-let searchButton = searchBtnEl.addEventListener("click", getWeather, function() {
+let searchButton = searchBtnEl.addEventListener("click", function() {
     console.log(cityEntry)
     // todo: search city from input and call get weather
 })
