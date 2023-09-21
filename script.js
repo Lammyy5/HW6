@@ -20,54 +20,98 @@ localStorage.getItem("city", searchTextEl);
 // })
 
 
-const apiUrl =  "https://api.openweathermap.org/data/2.5/weather?&appid=6b0d57e0839124a28215d650b3438d88&units=imperial&q=";
+const apiUrl = "https://api.openweathermap.org/data/2.5/weather?&appid=6b0d57e0839124a28215d650b3438d88&units=imperial&q=";
 const forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?&appid=6b0d57e0839124a28215d650b3438d88&units=imperial&q=";
 
 
 
 // functions
 let getCity = function (event) {
-let cityName = searchTextEl.value.trim();
+    let cityName = searchTextEl.value.trim();
 
-if (cityName) {
-    getWeather(cityName);
-}
+    if (cityName) {
+        getWeather(cityName);
+        getForecast(cityName);
+    }
 
 };
+let getForecast = function (city) {
+    let url = forecastUrl + city
+    fetch(url)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+        let forecast = [];
+        forecast.push(data.list)
+// console.log(forecast);
 
-let getWeather = function(city) {
+
+            for (let i = 7; i < data.list.length; i += 8) {
+                
+                forecast.push(data.list[i]);
+                console.log(data.list[i]);
+                for (let i = 0;i < cardEl.length; i++) {
+                    const card = cardEl[i].children;
+                    card[0].textContent = data.list[i].dt_txt
+                    card[1].textContent = data.list[i].main.temp + "\u00B0"
+                    card[2].textContent = data.list[i].wind.speed + "mph"
+                    card[3].textContent = data.list[i].main.humidity + "%"
+            
+            }
+                
+            }
+               
+        })}
+
+
+let getWeather = function (city) {
     let url = apiUrl + city
-fetch(url)
-.then(function (response){
-  return response.json();
-})
-.then(function (data){
-    let temp = data.main.temp;
-    let humidity = data.main.humidity;
-    let wind = data.wind.speed;
-    let name = data.name;
+    fetch(url)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            let temp = data.main.temp;
+            let humidity = data.main.humidity;
+            let wind = data.wind.speed;
+            let name = data.name;
 
-    let weather = [name,temp,humidity,wind];
+            let weather = [name, temp, humidity, wind];
 
-    console.log(temp)
-    // showWeather(data.results)
-    console.log(data)
-    showWeather(weather);
-    // showWeather();
-}) 
-    // todo: get weather from city searched
-    
-}
-function showWeather (weather) {
+            console.log(temp)
+            // showWeather(data.results)
+            // console.log(data)
+            showWeather(weather);
+            // showWeather();
+        })
+    let showForecast = function (weather) {
+        // console.log(date)
+
+        weather.forEach(weather => {
+            const card = document.createElement("li");
+            card.innerHTML = `
+    // <h3>${weather[0]}</h3>
+    // <h4>${weather[1]}F</h4>
+    // <h4>${weather[2]}mph</h4>
+    // <h4>Humidity:${weather[3]}%</h4>`
+
+        })
+    }
+
+// todo: get weather from city searched
+
+
+function showWeather(weather) {
     let name = weather[0];
     let temp = weather[1];
     let wind = weather[2];
     let humidity = weather[3];
 
-weatherDataEl.innerHtml = ""
+    weatherDataEl.innerHtml = ""
 
 
-currentWeatherEl.innerHTML = `
+    currentWeatherEl.innerHTML = `
 <h2>${name}</h2>
 <h4>Temperature:${temp}</h4>
 <h4>Wind:${wind} M/S</h4>
@@ -79,13 +123,14 @@ function searchHistory() {
 }
 getCityEl.addEventListener("click", function (event) {
     event.preventDefault();
-getCity();
+    getCity();
+    
     // getCity();
 
 });
 //     event.preventDefault();
 //     console.log("form")
 // });
-    // todo: search city from input and call get weather
+// todo: search city from input and call get weather
 
-
+}
