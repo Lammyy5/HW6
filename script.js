@@ -83,21 +83,22 @@ let getWeather = function (city) {
                 forecast.push(weather);
                 console.log(weather.date);
 
-                forecast.forEach(weather => {
-                    const info = document.createElement("li");
-                    info.classList.add("card");
+                
+    }
+    forecast.forEach(weather => {
+        const info = document.createElement("li");
+        info.classList.add("card");
 
-                    info.innerHTML = ` 
-                 <li class="card">
-                <h3>${weather.date}</h3>
-                <h4>temp:${weather.temp}F</h4>
-                <h4>Wind:${weather.wind}MPH</h4>
-                <h4>Humidity:${weather.humidity}%</h4>
-            </li>`
-                    forecastEl.appendChild(info)
+        info.innerHTML = ` 
+     <li class="card">
+    <h3>${weather.date}</h3>
+    <h4>temp:${weather.temp}F</h4>
+    <h4>Wind:${weather.wind}MPH</h4>
+    <h4>Humidity:${weather.humidity}%</h4>
+</li>`
+        forecastEl.appendChild(info)
 
-                })
-    }}
+    })}
 
     function showWeather(weather) {
         let name = weather[0];
